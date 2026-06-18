@@ -48,7 +48,7 @@ if ($dotnetMajor -lt 8) {
     Write-Error ".NET SDK $dotnetVersion detected. This demo requires .NET 8 or newer. Install from https://dotnet.microsoft.com/download/dotnet/8.0"
     exit 1
 }
-Write-Host "    dotnet $dotnetVersion ✓"
+Write-Host "    dotnet $dotnetVersion [OK]"
 
 if (-not (Test-CommandExists 'node')) {
     Write-Error "Node.js not found. Install Node 20+ from https://nodejs.org/"
@@ -60,7 +60,7 @@ if ($nodeMajor -lt 20) {
     Write-Error "Node $nodeVersion detected. This demo requires Node 20 or newer."
     exit 1
 }
-Write-Host "    node v$nodeVersion ✓"
+Write-Host "    node v$nodeVersion [OK]"
 
 if (-not (Test-CommandExists 'npm')) {
     Write-Error "npm not found (should ship with Node.js)."
@@ -72,7 +72,7 @@ Push-Location $apiPath
 try {
     & dotnet restore | Out-Null
     if ($LASTEXITCODE -ne 0) { throw "dotnet restore failed" }
-    Write-Host '    dotnet restore complete ✓'
+    Write-Host '    dotnet restore complete [OK]'
 } finally {
     Pop-Location
 }
@@ -81,13 +81,13 @@ Write-Section 'Installing frontend dependencies (npm)'
 Push-Location $webPath
 try {
     if (-not (Test-Path (Join-Path $webPath 'node_modules'))) {
-        Write-Host '    node_modules missing — running npm install (this may take a minute)...'
+        Write-Host '    node_modules missing -- running npm install (this may take a minute)...'
         & npm install --no-audit --no-fund
         if ($LASTEXITCODE -ne 0) { throw "npm install failed" }
     } else {
-        Write-Host '    node_modules present — skipping install'
+        Write-Host '    node_modules present -- skipping install'
     }
-    Write-Host '    frontend deps ready ✓'
+    Write-Host '    frontend deps ready [OK]'
 } finally {
     Pop-Location
 }
@@ -129,7 +129,7 @@ for ($i = 0; $i -lt 30; $i++) {
 }
 
 if ($ready) {
-    Write-Host "    Frontend ready at $frontendUrl ✓"
+    Write-Host "    Frontend ready at $frontendUrl [OK]"
     if (-not $NoBrowser) {
         Start-Process $frontendUrl | Out-Null
     }

@@ -36,18 +36,18 @@ You should see:
 
 ```
 ==> Verifying prerequisites
-    dotnet <X.Y.Z> ✓
-    node v<X.Y.Z> ✓
+    dotnet <X.Y.Z> [OK]
+    node v<X.Y.Z> [OK]
 ==> Restoring backend (dotnet)
-    dotnet restore complete ✓
+    dotnet restore complete [OK]
 ==> Installing frontend dependencies (npm)
-    node_modules present — skipping install
-    frontend deps ready ✓
+    node_modules present -- skipping install
+    frontend deps ready [OK]
 ==> Starting services
     API window PID: ...
     Web window PID: ...
 ==> Waiting for frontend to come up
-    Frontend ready at http://localhost:5173 ✓
+    Frontend ready at http://localhost:5173 [OK]
 ==> Demo launched
     API:      http://localhost:5080  (window PID ...)
     Frontend: http://localhost:5173  (window PID ...)

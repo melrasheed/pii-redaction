@@ -107,6 +107,8 @@ RUN.md                Exact launch + smoke-test steps
 
 ## Troubleshooting
 
+- **`Missing closing '}' in statement block` from `./start.ps1`** -- you are on Windows PowerShell 5.1 and the script file has non-ASCII characters that get misread. The scripts shipped in this repo are pure ASCII to avoid this; if you've manually edited them and re-introduced Unicode, either save the file as UTF-8-with-BOM or switch to PowerShell 7 (`winget install Microsoft.PowerShell`).
+
 - **`dotnet: command not found`** → install the .NET 8 SDK (see prereqs).
 - **`node: command not found`** → install Node 20+ (see prereqs).
 - **Browser opens to a Vite "loading" screen forever** → the API hasn't started yet. Check the API PowerShell window for errors (likely a port-5080 conflict or missing `appsettings.json`).
