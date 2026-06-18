@@ -9,12 +9,11 @@ const useStyles = makeStyles({
   wrap: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '8px',
-    minWidth: '110px',
+    gap: '6px',
   },
   track: {
     position: 'relative',
-    width: '80px',
+    width: '60px',
     height: '6px',
     borderRadius: '3px',
     backgroundColor: tokens.colorNeutralBackground5,
@@ -31,6 +30,7 @@ const useStyles = makeStyles({
     fontVariantNumeric: 'tabular-nums',
     fontSize: tokens.fontSizeBase200,
     color: tokens.colorNeutralForeground2,
+    minWidth: '32px',
   },
 });
 

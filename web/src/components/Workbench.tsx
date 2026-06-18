@@ -31,7 +31,15 @@ interface WorkbenchProps {
 }
 
 const useStyles = makeStyles({
-  root: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px', overflow: 'auto', height: '100%' },
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+    padding: '16px',
+    paddingBottom: '48px',
+    overflowY: 'auto',
+    minHeight: 0,
+  },
   actionRow: { display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' },
   rawRequest: { display: 'flex', flexDirection: 'column', gap: '8px' },
   langRow: { display: 'flex', alignItems: 'center', gap: '8px' },

@@ -24,32 +24,19 @@ const useStyles = makeStyles({
     gridTemplateRows: '1fr',
     height: 'calc(100vh - 56px)',
     backgroundColor: tokens.colorNeutralBackground3,
+    minHeight: 0,
   },
   rightRail: {
-    overflow: 'auto',
     padding: '16px',
-    borderLeft: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderLeftWidth: '1px',
+    borderLeftStyle: 'solid',
+    borderLeftColor: tokens.colorNeutralStroke2,
     backgroundColor: tokens.colorNeutralBackground2,
     display: 'flex',
     flexDirection: 'column',
-    gap: '16px',
-  },
-  footer: {
-    position: 'fixed',
-    right: '16px',
-    bottom: '12px',
-    display: 'flex',
-    gap: '8px',
-    alignItems: 'center',
-    fontSize: tokens.fontSizeBase200,
-    color: tokens.colorNeutralForeground3,
-    background: 'transparent',
-  },
-  footerNote: {
-    fontSize: tokens.fontSizeBase100,
-    color: tokens.colorNeutralForeground4,
-    textAlign: 'center' as const,
-    padding: '6px 0',
+    gap: '12px',
+    minHeight: 0,
+    overflow: 'hidden',
   },
 });
 
@@ -93,7 +80,7 @@ export default function App() {
           }}
         />
         <Workbench registerHandlers={registerHandlers} />
-        <aside className={styles.rightRail}>
+        <aside className={styles.rightRail} aria-label="Insights">
           <SectionHeader title="Insights" description="Live results from the latest detection run." right={
             <Button appearance="subtle" icon={<CodeBlock24Regular />} onClick={() => setTraceOpen(true)}>
               Open trace
@@ -110,13 +97,6 @@ export default function App() {
       <SettingsDrawer open={settingsOpen} onClose={() => setSettingsOpen(false)} />
       <AuditLogDrawer open={auditOpen} onClose={() => setAuditOpen(false)} />
       <RequestTracePanel open={traceOpen} onClose={() => setTraceOpen(false)} />
-
-      <div className={styles.footer}>
-        <span>Demo only — no production telemetry.</span>
-        <Button size="small" appearance="subtle" onClick={() => setTraceOpen(true)}>
-          Show trace
-        </Button>
-      </div>
 
       <Toaster position="bottom-center" toastOptions={{ duration: 3500 }} />
     </FluentProvider>

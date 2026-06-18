@@ -212,14 +212,14 @@ export function ConfigCard({ collapsed, onToggleCollapsed }: ConfigCardProps) {
           info="entityMaskWithNumericSuffix is implemented by the local proxy as a deterministic post-pass over Azure's noMask response so the demo works on every API version and enables reverse-tokenisation."
         />
         <RadioGroup
-          layout="horizontal"
+          layout="vertical"
           value={defaults.redactionPolicy}
           onChange={(_, d) => setDefaults({ redactionPolicy: d.value as typeof defaults.redactionPolicy })}
         >
-          <Radio value="noMask" label="noMask (entities only)" />
-          <Radio value="characterMask" label="characterMask" />
-          <Radio value="entityMask" label="entityMask" />
-          <Radio value="entityMaskWithNumericSuffix" label="entityMaskWithNumericSuffix (tokenised)" />
+          <Radio value="noMask" label="noMask — entities only, leave text as-is" />
+          <Radio value="characterMask" label="characterMask — replace each char with a symbol" />
+          <Radio value="entityMask" label="entityMask — replace with [CATEGORY]" />
+          <Radio value="entityMaskWithNumericSuffix" label="entityMaskWithNumericSuffix — tokenised, e.g. [PERSON_1] (enables rehydration)" />
         </RadioGroup>
         {defaults.redactionPolicy === 'characterMask' ? (
           <Field label="Redaction character" style={{ marginTop: '8px', maxWidth: '160px' }}>

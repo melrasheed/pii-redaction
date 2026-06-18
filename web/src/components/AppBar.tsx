@@ -48,6 +48,12 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground2,
     fontSize: tokens.fontSizeBase200,
   },
+  disclaimer: {
+    color: tokens.colorNeutralForeground3,
+    fontSize: tokens.fontSizeBase100,
+    fontStyle: 'italic',
+    marginLeft: '12px',
+  },
   swap: { position: 'relative' },
   badge: {
     position: 'absolute',
@@ -69,6 +75,7 @@ export function AppBar({ onOpenSettings, onOpenAudit }: AppBarProps) {
         <span className={styles.logo} aria-hidden />
         <span className={styles.title}>Azure AI Language</span>
         <span className={styles.subtitle}>— PII Redaction Studio</span>
+        <span className={styles.disclaimer}>Demo only — no production telemetry.</span>
       </div>
       <div className={styles.right}>
         <Tooltip content="Audit log" relationship="label">

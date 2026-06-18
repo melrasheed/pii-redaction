@@ -2,8 +2,6 @@ import { useState, type MutableRefObject } from 'react';
 import {
   Body1Strong,
   Button,
-  Card,
-  CardHeader,
   MessageBar,
   MessageBarBody,
   MessageBarTitle,
@@ -25,12 +23,54 @@ interface LlmRoundTripPanelProps {
 }
 
 const useStyles = makeStyles({
-  card: { padding: '12px', display: 'flex', flexDirection: 'column', gap: '12px' },
+  card: {
+    padding: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+    backgroundColor: tokens.colorNeutralBackground1,
+    borderTopWidth: '1px',
+    borderRightWidth: '1px',
+    borderBottomWidth: '1px',
+    borderLeftWidth: '1px',
+    borderTopStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftStyle: 'solid',
+    borderTopColor: tokens.colorNeutralStroke2,
+    borderRightColor: tokens.colorNeutralStroke2,
+    borderBottomColor: tokens.colorNeutralStroke2,
+    borderLeftColor: tokens.colorNeutralStroke2,
+    borderRadius: tokens.borderRadiusLarge,
+  },
+  cardHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '12px',
+  },
+  cardHeaderLeft: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  },
+  cardHeaderTitle: { display: 'flex', flexDirection: 'column', gap: '2px' },
   block: {
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderTopWidth: '1px',
+    borderRightWidth: '1px',
+    borderBottomWidth: '1px',
+    borderLeftWidth: '1px',
+    borderTopStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftStyle: 'solid',
+    borderTopColor: tokens.colorNeutralStroke2,
+    borderRightColor: tokens.colorNeutralStroke2,
+    borderBottomColor: tokens.colorNeutralStroke2,
+    borderLeftColor: tokens.colorNeutralStroke2,
     borderRadius: tokens.borderRadiusMedium,
     padding: '12px',
-    backgroundColor: tokens.colorNeutralBackground1,
+    backgroundColor: tokens.colorNeutralBackground2,
     minHeight: '80px',
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
@@ -43,6 +83,7 @@ const useStyles = makeStyles({
     marginBottom: '4px',
     textTransform: 'uppercase',
     letterSpacing: '0.5px',
+    fontWeight: tokens.fontWeightSemibold,
   },
 });
 
@@ -88,25 +129,29 @@ export function LlmRoundTripPanel({ triggerRef }: LlmRoundTripPanelProps) {
   const err = chat.error?.response?.data;
 
   return (
-    <Card className={styles.card}>
-      <CardHeader
-        image={<BotRegular />}
-        header={<Body1Strong>LLM round-trip — Safe GenAI</Body1Strong>}
-        description={<span style={{ fontSize: tokens.fontSizeBase200, color: tokens.colorNeutralForeground2 }}>Redacted text → Azure OpenAI → detokenise locally.</span>}
-        action={
-          <Button
-            appearance="primary"
-            icon={chat.isPending ? <Spinner size="tiny" /> : <Send24Regular />}
-            onClick={send}
-            disabled={!redactedText || chat.isPending}
-          >
-            Send (Ctrl+L)
-          </Button>
-        }
-      />
+    <section className={styles.card} aria-label="LLM round-trip">
+      <div className={styles.cardHeader}>
+        <div className={styles.cardHeaderLeft}>
+          <BotRegular />
+          <div className={styles.cardHeaderTitle}>
+            <Body1Strong>LLM round-trip — Safe GenAI</Body1Strong>
+            <span style={{ fontSize: tokens.fontSizeBase200, color: tokens.colorNeutralForeground2 }}>
+              Redacted text → Azure OpenAI → detokenise locally.
+            </span>
+          </div>
+        </div>
+        <Button
+          appearance="primary"
+          icon={chat.isPending ? <Spinner size="tiny" /> : <Send24Regular />}
+          onClick={send}
+          disabled={!redactedText || chat.isPending}
+        >
+          Send (Ctrl+L)
+        </Button>
+      </div>
       <div>
         <div className={styles.blockLabel}>System prompt</div>
-        <Textarea value={systemPrompt} onChange={(_, d) => setSystemPrompt(d.value)} rows={3} />
+        <Textarea value={systemPrompt} onChange={(_, d) => setSystemPrompt(d.value)} rows={3} style={{ width: '100%' }} />
       </div>
       <div>
         <div className={styles.blockLabel}>User content sent to the LLM (redacted)</div>
@@ -145,6 +190,6 @@ export function LlmRoundTripPanel({ triggerRef }: LlmRoundTripPanelProps) {
           </span>
         </>
       ) : null}
-    </Card>
+    </section>
   );
 }
