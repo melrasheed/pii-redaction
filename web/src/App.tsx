@@ -20,7 +20,6 @@ import { CodeBlock24Regular } from '@fluentui/react-icons';
 const useStyles = makeStyles({
   shell: {
     display: 'grid',
-    gridTemplateColumns: '320px 1fr 400px',
     gridTemplateRows: '1fr',
     height: 'calc(100vh - 56px)',
     backgroundColor: tokens.colorNeutralBackground3,
@@ -54,6 +53,7 @@ export default function App() {
   const [auditOpen, setAuditOpen] = useState(false);
   const [traceOpen, setTraceOpen] = useState(false);
   const [rightTab, setRightTab] = useState<'entities' | 'mapping'>('entities');
+  const [galleryCollapsed, setGalleryCollapsed] = useState(false);
 
   const handlersRef = useRef<{ detect: () => void; sendLlm: () => void } | null>(null);
   const registerHandlers = (h: { detect: () => void; sendLlm: () => void }) => {
@@ -71,8 +71,13 @@ export default function App() {
   return (
     <FluentProvider theme={theme} style={{ minHeight: '100vh' }}>
       <AppBar onOpenSettings={() => setSettingsOpen(true)} onOpenAudit={() => setAuditOpen(true)} />
-      <div className={styles.shell}>
+      <div
+        className={styles.shell}
+        style={{ gridTemplateColumns: `${galleryCollapsed ? 40 : 320}px 1fr 400px` }}
+      >
         <TemplateGallery
+          collapsed={galleryCollapsed}
+          onToggleCollapse={() => setGalleryCollapsed((v) => !v)}
           onPick={(s) => {
             setPiiDefaults({ language: s.language });
             setMapping({ originalText: s.text, redactedText: '', entities: [], mapping: [] });
