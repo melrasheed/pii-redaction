@@ -22,6 +22,7 @@ export function usePiiAnalyze() {
         headers: {
           [ProxyHeader.LanguageEndpoint]: language.endpoint,
           [ProxyHeader.LanguageKey]: language.key,
+          [ProxyHeader.LanguageMode]: language.mode,
         },
       });
       return data;

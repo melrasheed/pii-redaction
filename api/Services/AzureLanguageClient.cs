@@ -53,7 +53,10 @@ public sealed class AzureLanguageClient
         {
             Content = new StringContent(requestJson, Encoding.UTF8, "application/json")
         };
-        message.Headers.Add("Ocp-Apim-Subscription-Key", key);
+        if (!string.IsNullOrWhiteSpace(key))
+        {
+            message.Headers.Add("Ocp-Apim-Subscription-Key", key);
+        }
 
         var sw = Stopwatch.StartNew();
         HttpResponseMessage response;

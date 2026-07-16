@@ -36,12 +36,16 @@ public static class PiiEndpoints
 
         var endpoint = http.Request.Headers[ProxyHeaders.LanguageEndpoint].ToString();
         var key = http.Request.Headers[ProxyHeaders.LanguageKey].ToString();
-        if (string.IsNullOrWhiteSpace(endpoint) || string.IsNullOrWhiteSpace(key))
+        var mode = http.Request.Headers[ProxyHeaders.LanguageMode].ToString();
+        var isContainer = string.Equals(mode, "container", StringComparison.OrdinalIgnoreCase);
+        if (string.IsNullOrWhiteSpace(endpoint) || (!isContainer && string.IsNullOrWhiteSpace(key)))
         {
             return Results.BadRequest(new ProxyError
             {
                 ErrorCode = "MissingConfig",
-                Message = $"Headers '{ProxyHeaders.LanguageEndpoint}' and '{ProxyHeaders.LanguageKey}' are required.",
+                Message = isContainer
+                    ? $"Header '{ProxyHeaders.LanguageEndpoint}' is required."
+                    : $"Headers '{ProxyHeaders.LanguageEndpoint}' and '{ProxyHeaders.LanguageKey}' are required.",
                 Status = 400,
                 Raw = JsonDocument.Parse("\"\"").RootElement
             });

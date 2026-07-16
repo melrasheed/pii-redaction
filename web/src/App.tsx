@@ -1,8 +1,10 @@
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FluentProvider, Tab, TabList, makeStyles, tokens } from '@fluentui/react-components';
 import { Toaster } from 'react-hot-toast';
 import { AppBar } from './components/AppBar';
 import { TemplateGallery } from './components/TemplateGallery';
+import { getDefaultTemplate } from './templates';
+import type { TemplateSample } from './templates/types';
 import { Workbench } from './components/Workbench';
 import { EntitiesTable } from './components/EntitiesTable';
 import { MappingTable } from './components/MappingTable';
@@ -48,6 +50,7 @@ export default function App() {
   const entities = useMappingStore((s) => s.entities);
   const setMapping = useMappingStore((s) => s.set);
   const setEditorText = useMappingStore((s) => s.setEditorText);
+  const resetMapping = useMappingStore((s) => s.reset);
 
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [auditOpen, setAuditOpen] = useState(false);
@@ -68,6 +71,25 @@ export default function App() {
 
   const theme = useMemo(() => (darkMode ? darkTheme : lightTheme), [darkMode]);
 
+  const loadTemplate = useCallback(
+    (s: TemplateSample) => {
+      setPiiDefaults({ language: s.language });
+      setMapping({ originalText: s.text, redactedText: '', entities: [], mapping: [] });
+      setEditorText(s.text);
+    },
+    [setPiiDefaults, setMapping, setEditorText]
+  );
+
+  const handleUseOwnText = useCallback(() => {
+    resetMapping();
+  }, [resetMapping]);
+
+  // Load the default KYC onboarding template once on first mount.
+  useEffect(() => {
+    loadTemplate(getDefaultTemplate());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <FluentProvider theme={theme} style={{ minHeight: '100vh' }}>
       <AppBar onOpenSettings={() => setSettingsOpen(true)} onOpenAudit={() => setAuditOpen(true)} />
@@ -78,11 +100,8 @@ export default function App() {
         <TemplateGallery
           collapsed={galleryCollapsed}
           onToggleCollapse={() => setGalleryCollapsed((v) => !v)}
-          onPick={(s) => {
-            setPiiDefaults({ language: s.language });
-            setMapping({ originalText: s.text, redactedText: '', entities: [], mapping: [] });
-            setEditorText(s.text);
-          }}
+          onPick={loadTemplate}
+          onUseOwnText={handleUseOwnText}
         />
         <Workbench registerHandlers={registerHandlers} />
         <aside className={styles.rightRail} aria-label="Insights">

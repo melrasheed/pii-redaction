@@ -58,6 +58,8 @@ export function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
   const reset = useSettingsStore((s) => s.reset);
   const importJson = useSettingsStore((s) => s.importJson);
   const exportJson = useSettingsStore((s) => s.exportJson);
+  const showAllTemplates = useSettingsStore((s) => s.ui.showAllTemplates);
+  const setUi = useSettingsStore((s) => s.setUi);
 
   const containerHelp =
     'Container mode just swaps the endpoint URL (e.g. http://localhost:5000). The Azure container exposes the same /language/:analyze-text route — no code changes needed. Use for sovereignty / airgap scenarios.';
@@ -113,14 +115,20 @@ export function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
               onChange={(_, d) => setLanguage({ endpoint: d.value })}
             />
           </Field>
-          <Field label={<>API key {tip('Found in the Azure portal → your Language resource → Keys and Endpoint.')}</>}>
-            <MaskedSecretField
-              ariaLabel="Azure Language key"
-              value={language.key}
-              onChange={(v) => setLanguage({ key: v })}
-              placeholder="Paste key 1 or key 2"
-            />
-          </Field>
+          {language.mode === 'container' ? (
+            <Field label={<>API key {tip('On-prem containers run without Azure authentication, so no key is needed.')}</>}>
+              <Caption1>No API key required in on-prem (container) mode.</Caption1>
+            </Field>
+          ) : (
+            <Field label={<>API key {tip('Found in the Azure portal → your Language resource → Keys and Endpoint.')}</>}>
+              <MaskedSecretField
+                ariaLabel="Azure Language key"
+                value={language.key}
+                onChange={(v) => setLanguage({ key: v })}
+                placeholder="Paste key 1 or key 2"
+              />
+            </Field>
+          )}
           <div className={styles.row}>
             <Field label={<>API version {tip('REST API version sent to Azure. GA is recommended for production credibility.')}</>} style={{ flex: 1 }}>
               <Dropdown
@@ -211,6 +219,21 @@ export function SettingsDrawer({ open, onClose }: SettingsDrawerProps) {
               rows={4}
             />
           </Field>
+        </section>
+
+        <Divider />
+
+        {/* ── Template gallery ────────────────────────────── */}
+        <section className={styles.group}>
+          <SectionHeader
+            title="Template gallery"
+            description="Focus the workbench on the KYC onboarding use case, or open the gallery to every industry sample."
+          />
+          <Switch
+            checked={showAllTemplates}
+            onChange={(_, d) => setUi({ showAllTemplates: d.checked })}
+            label="Show all templates (banking, telecom, healthcare, legal, support, government)"
+          />
         </section>
 
         <Divider />

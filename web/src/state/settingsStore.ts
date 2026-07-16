@@ -23,6 +23,7 @@ export interface SettingsState {
   piiDefaults: Omit<PiiAnalyzeRequest, 'text'>;
   ui: {
     darkMode: boolean;
+    showAllTemplates: boolean;
   };
 
   setLanguage: (patch: Partial<SettingsState['language']>) => void;
@@ -53,7 +54,7 @@ const defaultState: Omit<
     maxTokens: 800,
     temperature: 0.2,
     systemPrompt:
-      'You are a customer support summarizer. Summarize the following anonymized record in 3-5 bullet points. Preserve any token placeholders like [PERSON_1] or [EMAIL_2] exactly as-is so the system can rehydrate them.',
+      'You are a customer support summarizer. Summarize the following anonymized record in bullet points. Preserve any token placeholders like [PERSON_1] or [EMAIL_2] exactly as-is so the system can rehydrate them. Do not miss any placeholder.',
   },
   piiDefaults: {
     language: 'en',
@@ -73,6 +74,7 @@ const defaultState: Omit<
   },
   ui: {
     darkMode: false,
+    showAllTemplates: false,
   },
 };
 

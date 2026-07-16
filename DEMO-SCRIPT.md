@@ -11,8 +11,8 @@
 Point at the AppBar. Mention: local-only demo, no Docker, no telemetry, runs on the architect's own machine, keys live only in the browser tab's sessionStorage.
 
 ## 1:00 — Pick a Banking Arabic KYC sample (≈ 1.5 min)
-1. Open the **Template Gallery** on the left.
-2. Click the **Arabic** tab, expand **Banking**, choose **نموذج فتح حساب توفير**.
+1. The gallery opens focused on the **KYC onboarding form** (English), already loaded in the editor. To reach the Arabic samples, open **Settings** and enable **Show all templates**.
+2. Back in the gallery, click the **Arabic** tab, expand **Banking**, choose **نموذج فتح حساب توفير**.
 3. The Monaco editor flips to RTL automatically. Show how dense the sample is — QID, IBAN starting `QA`, +974 numbers, Qatari address, employer.
 4. Click **Detect & Redact** (or press `Ctrl+Enter`).
 5. Side-by-Side view appears: every PII span on the left gets a colour, the redacted text appears on the right. Hover one span to show the tooltip (category, confidence, offset, length).

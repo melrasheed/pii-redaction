@@ -15,6 +15,7 @@ interface TextEditorProps {
 const useStyles = makeStyles({
   wrap: {
     height: '320px',
+    flexShrink: 0,
     borderRadius: tokens.borderRadiusMedium,
     border: `1px solid ${tokens.colorNeutralStroke2}`,
     overflow: 'hidden',
