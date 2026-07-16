@@ -21,6 +21,14 @@ export const TEMPLATES_BY_INDUSTRY: Record<TemplateIndustry, TemplateSample[]> =
 /** Convenience: every template in a single array. */
 export const ALL_TEMPLATES: TemplateSample[] = (Object.values(TEMPLATES_BY_INDUSTRY) as TemplateSample[][]).flat();
 
+/** The template loaded by default and shown alone in the focused (use-case) gallery view. */
+export const DEFAULT_TEMPLATE_ID = 'banking-en-1';
+
+/** Returns the default KYC onboarding template (falls back to the first template if not found). */
+export function getDefaultTemplate(): TemplateSample {
+  return ALL_TEMPLATES.find((t) => t.id === DEFAULT_TEMPLATE_ID) ?? ALL_TEMPLATES[0];
+}
+
 /** Industry display metadata for the left-rail accordion. */
 export const INDUSTRY_META: { id: TemplateIndustry; label: string; emoji: string }[] = [
   { id: 'banking',     label: 'Banking',          emoji: '🏦' },

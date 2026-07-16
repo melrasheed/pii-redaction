@@ -80,9 +80,10 @@ Open <http://localhost:5173>. You should see the **AppBar** at the top, the **Te
 
 ### 4. Detect & redact
 
-1. From the left rail click **Banking → English → KYC onboarding form — premium account**.
-2. The editor populates with the long-form sample.
-3. Press `Ctrl+Enter` (or click **Detect & Redact**).
+1. The **KYC onboarding form — premium account** loads into the editor by default.
+   - Prefer your own content? Switch the gallery toggle to **My own text** and paste/type it in.
+   - Need the other industries? Enable **Show all templates** in **Settings**, then pick any sample.
+2. Press `Ctrl+Enter` (or click **Detect & Redact**).
 4. Within ~1–3 seconds you should see:
    - A toast like *"Detected 32 entities in 412 ms"*.
    - The **Side-by-Side** tab populated with coloured highlights.

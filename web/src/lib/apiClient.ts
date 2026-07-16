@@ -9,6 +9,7 @@ import type { TraceEntry } from './types';
 export const ProxyHeader = {
   LanguageEndpoint: 'X-Azure-Language-Endpoint',
   LanguageKey: 'X-Azure-Language-Key',
+  LanguageMode: 'X-Azure-Language-Mode',
   OpenAiEndpoint: 'X-AOAI-Endpoint',
   OpenAiKey: 'X-AOAI-Key',
   OpenAiDeployment: 'X-AOAI-Deployment',

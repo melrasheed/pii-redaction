@@ -53,6 +53,7 @@ export function Workbench({ registerHandlers }: WorkbenchProps) {
   const apiVersion = piiDefaults.apiVersion;
   const languageEndpoint = useSettingsStore((s) => s.language.endpoint);
   const languageKey = useSettingsStore((s) => s.language.key);
+  const languageMode = useSettingsStore((s) => s.language.mode);
 
   const originalFromStore = useMappingStore((s) => s.originalText);
   const editorText = useMappingStore((s) => s.editorText);
@@ -77,8 +78,12 @@ export function Workbench({ registerHandlers }: WorkbenchProps) {
       toast.error('Enter some text first');
       return;
     }
-    if (!languageEndpoint || !languageKey) {
-      toast.error('Set Azure AI Language endpoint and key in Settings');
+    if (!languageEndpoint || (languageMode !== 'container' && !languageKey)) {
+      toast.error(
+        languageMode === 'container'
+          ? 'Set the Azure AI Language container endpoint in Settings'
+          : 'Set Azure AI Language endpoint and key in Settings'
+      );
       return;
     }
     analyze.mutate(

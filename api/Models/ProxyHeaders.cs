@@ -13,6 +13,9 @@ public static class ProxyHeaders
     /// <summary>Azure AI Language resource key (forwarded as <c>Ocp-Apim-Subscription-Key</c>).</summary>
     public const string LanguageKey = "X-Azure-Language-Key";
 
+    /// <summary>Azure AI Language deployment mode (<c>cloud</c> or <c>container</c>). Container mode needs no key.</summary>
+    public const string LanguageMode = "X-Azure-Language-Mode";
+
     /// <summary>Azure OpenAI endpoint base URL, e.g. <c>https://my-aoai.openai.azure.com</c>.</summary>
     public const string OpenAiEndpoint = "X-AOAI-Endpoint";
 
