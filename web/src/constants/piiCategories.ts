@@ -82,6 +82,8 @@ export const PII_CATEGORIES: PiiCategoryMeta[] = [
 
   // ── Country-specific (small representative set; extend as Microsoft adds them) ──
   { category: 'QatarPersonalIdentificationNumber', group: 'Country-specific', color: '#7E1B33', tooltip: 'Qatar national QID number (11 digits).' },
+  { category: 'CE_QatarPersonalIdentificationNumber', group: 'Country-specific', color: '#9E2846', tooltip: 'Qatar QID (11 digits) detected via custom Text PII container regex rule.' },
+  { category: 'CE_QatarPassportNumber',            group: 'Country-specific', color: '#B15C00', tooltip: 'Qatar passport (8 digits) detected via custom Text PII container regex rule.' },
   { category: 'UKNationalInsuranceNumber',         group: 'Country-specific', color: '#A4262C', tooltip: 'UK National Insurance Number (NINO).' },
   { category: 'IndianPermanentAccount',            group: 'Country-specific', color: '#D13438', tooltip: 'India PAN number.' },
   { category: 'IndianAadhaarNumber',               group: 'Country-specific', color: '#CA5010', tooltip: 'India Aadhaar number (12 digits).' },

@@ -26,7 +26,7 @@ SIM ICCID: 8997440011223344556
 Customer reference number: OOR-CIF-99873-A
 Linked credit card on file: 5413 1234 5678 9012, expiry 04/30
 
-According to my travel itinerary I was in Doha for the entire billing period (1–30 May 2026) and my passport (QA-CA9981201) has no exit stamps. There is no way I could have used data in Greece or Cyprus where the charges supposedly originated.
+According to my travel itinerary I was in Doha for the entire billing period (1–30 May 2026) and my passport (29981201) has no exit stamps. There is no way I could have used data in Greece or Cyprus where the charges supposedly originated.
 
 I would like:
 1. A full reversal of QAR 3,847.
@@ -60,7 +60,7 @@ Date of birth: 4 January 1979
 
 Issue: The subscriber phoned hotline 800 from +974 5566 4488 (NOT his number on file) at 08:31 AST claiming his handset (IMEI 868001054423998) was stolen and requested an emergency SIM replacement. The agent flagged the call after the caller failed to confirm the security question (mother's maiden name).
 
-Approximately 11 minutes later a walk-in at the City Center Doha shop (POS-DOH-CC-04) presented a forged passport (purported number QA-DG7702011) requesting the same SIM replacement. Store agent Ahmed Rashed (vodafone-emp-66120) refused the swap.
+Approximately 11 minutes later a walk-in at the City Center Doha shop (POS-DOH-CC-04) presented a forged passport (purported number 27702011) requesting the same SIM replacement. Store agent Ahmed Rashed (vodafone-emp-66120) refused the swap.
 
 Action taken:
  - Soft-locked MSISDN +974 7700 1188 at 09:39 AST.

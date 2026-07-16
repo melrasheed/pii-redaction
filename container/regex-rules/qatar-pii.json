@@ -1,0 +1,76 @@
+[
+  {
+    "name": "CE_QatarPersonalIdentificationNumber",
+    "description": "Qatar national ID (QID): 11 numeric digits, first digit 2 or 3 (century of birth).",
+    "regexPatterns": [
+      {
+        "id": "QatarQID11Digits",
+        "pattern": "(?<!\\d)[23]\\d{10}(?!\\d)",
+        "matchScore": 0.75,
+        "locales": ["en", "ar"]
+      }
+    ],
+    "matchContext": {
+      "hints": [
+        {
+          "hintText": "(?i)\\bq\\.?\\s?i\\.?\\s?d\\.?\\b",
+          "boostingScore": 0.2,
+          "locales": ["en"],
+          "contextLimit": 120
+        },
+        {
+          "hintText": "(?i)qatar[i]?\\s*(id|identity|national\\s*id|personal\\s*(number|no|id))",
+          "boostingScore": 0.2,
+          "locales": ["en"],
+          "contextLimit": 120
+        },
+        {
+          "hintText": "الرقم\\s*الشخصي",
+          "boostingScore": 0.2,
+          "locales": ["ar"],
+          "contextLimit": 120
+        },
+        {
+          "hintText": "الهوية\\s*القطرية",
+          "boostingScore": 0.2,
+          "locales": ["ar"],
+          "contextLimit": 120
+        }
+      ]
+    }
+  },
+  {
+    "name": "CE_QatarPassportNumber",
+    "description": "Qatar passport number: 8 numeric digits (modern format).",
+    "regexPatterns": [
+      {
+        "id": "QatarPassport8Digits",
+        "pattern": "(?<!\\d)\\d{8}(?!\\d)",
+        "matchScore": 0.55,
+        "locales": ["en", "ar"]
+      }
+    ],
+    "matchContext": {
+      "hints": [
+        {
+          "hintText": "(?i)passport\\s*(no\\.?|number|#)?",
+          "boostingScore": 0.3,
+          "locales": ["en"],
+          "contextLimit": 120
+        },
+        {
+          "hintText": "جواز\\s*(السفر|سفر)?",
+          "boostingScore": 0.3,
+          "locales": ["ar"],
+          "contextLimit": 120
+        },
+        {
+          "hintText": "رقم\\s*الجواز",
+          "boostingScore": 0.3,
+          "locales": ["ar"],
+          "contextLimit": 120
+        }
+      ]
+    }
+  }
+]
